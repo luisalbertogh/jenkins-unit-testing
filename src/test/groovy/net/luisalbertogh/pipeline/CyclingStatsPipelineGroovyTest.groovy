@@ -15,7 +15,6 @@ import net.luisalbertogh.jenkins.unit.PipelineTest
 import net.luisalbertogh.jenkins.unit.domain.File
 
 /**
- * Test.hfghf
  * @author loga
  *
  */
