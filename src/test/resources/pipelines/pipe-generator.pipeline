@@ -1,0 +1,49 @@
+#!groovy
+import hudson.*
+import hudson.model.*
+import jenkins.*
+import jenkins.model.*
+def output
+def envs
+node('master') {
+    stage('Clone specific configuration'){
+        checkout([$class: 'GitSCM', branches: [[name: conf_branch]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'properties']], submoduleCfg: [], userRemoteConfigs: [[credentialsId: conf_credentials, url: conf_gitUrl]]])
+        envs = readProperties  file: "properties/generator.properties"
+        // echo envs
+    }
+    stage('Validate Form'){
+        withCredentials([usernamePassword(credentialsId: conf_credentials, passwordVariable: 'cred', usernameVariable: 'user')]) {
+            // some block
+            // echo "${envs.repository_template_url_protocol}"
+            gitURL = "${envs.repository_template_url_protocol}${user}:${cred}@${envs.repository_template_url_name}/${projectName}/${repoName}.git"
+            sh "git ls-remote ${gitURL} > output.txt"
+            output = readFile("output.txt")
+            if(output.size() == 0){
+                error "GIT REPOSITORY ${gitURL} DOES NOT EXIST"
+            }else{
+                echo "[INFO] Validation: git repository exists"
+            }
+        }
+
+    }
+    stage('Generate pipeline'){
+        checkout([$class: 'GitSCM', branches: [[name: envs.generator_branch]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'script']], submoduleCfg: [], userRemoteConfigs: [[credentialsId: envs.bitbucket_credentials, url: envs.generator_url]]])
+        //empty file for sharing vars
+        sh 'rm -f tempProperties.properties'
+
+        jobDsl targets: 'script/generator.groovy'
+
+        UpdateBitbucketHookConf(envs)
+    }
+}
+
+def UpdateBitbucketHookConf(envs){
+    def data = readFile("tempProperties.properties")
+    data = data.split("\n")
+
+    def jobName = data[0]
+    def token = data[1]
+    def bitbucket = load 'script/Utils/Bitbucket.groovy'    
+    bitbucket.Init(projectName, repoName, this)
+    bitbucket.UpdateJenkinsStarterPluginHookConf(jobName, token, envs.jenkins_url, envs.filter_branches, "", envs.jen_user,  envs.jen_creds)
+}

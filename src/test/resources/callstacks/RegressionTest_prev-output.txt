@@ -1,0 +1,5 @@
+   sh-libraries.run()
+      sh-libraries.node(groovy.lang.Closure)
+         sh-libraries.stage(Hello, groovy.lang.Closure)
+            Simple.sayHello(Luis)
+               Simple.echo(Hello Luis from simple lib)

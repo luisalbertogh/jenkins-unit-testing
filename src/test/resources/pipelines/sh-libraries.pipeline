@@ -1,0 +1,11 @@
+#!groovy
+
+@Library('simple-lib') 
+import net.luisalbertogh.jenkins.Simple
+
+node {
+    stage('Hello'){
+        def s = new Simple()
+        s.sayHello('Luis')
+    }
+}

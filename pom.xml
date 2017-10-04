@@ -1,0 +1,73 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.luisalbertogh</groupId>
+  <artifactId>jenkins-pipeline-testing</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <description>A Jenkins pipeline unit testing framework</description>
+  
+  <!-- Dependencies -->
+  <dependencies>
+  	<!-- Pipeline unit framework -->
+  	<dependency>
+      <groupId>com.lesfurets</groupId>
+      <artifactId>jenkins-pipeline-unit</artifactId>
+      <version>1.1</version>
+    </dependency>
+    <!-- Junit 4 -->
+    <dependency>
+	    <groupId>junit</groupId>
+	    <artifactId>junit</artifactId>
+	    <version>4.12</version>
+	</dependency>
+  </dependencies>
+  
+  <build>
+    <plugins>
+      <!-- Maven compiler plugin tuned for Groovy -->
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.3</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+          <compilerId>groovy-eclipse-compiler</compilerId>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-eclipse-compiler</artifactId>
+            <version>2.9.2-01</version>
+          </dependency>
+          <!-- for 2.8.0-01 and later you must have an explicit dependency on groovy-eclipse-batch -->
+          <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-eclipse-batch</artifactId>
+            <version>2.4.3-01</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+      <!-- Groovy eclipse compiler plugin -->
+      <plugin>
+	    <groupId>org.codehaus.groovy</groupId>
+	    <artifactId>groovy-eclipse-compiler</artifactId>
+	    <version>2.9.2-01</version>
+	    <extensions>true</extensions>
+	  </plugin>
+    </plugins>
+  </build>
+  
+  <!-- Distribution management -->
+  <distributionManagement>
+    <repository>
+      <id>artifactory</id>
+      <name>PCMAD231-releases</name>
+      <url>http://localhost:8082/artifactory/my-releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>snapshots</id>
+      <name>PCMAD231-snapshots</name>
+      <url>http://localhost:8082/artifactory/my-snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+</project>
