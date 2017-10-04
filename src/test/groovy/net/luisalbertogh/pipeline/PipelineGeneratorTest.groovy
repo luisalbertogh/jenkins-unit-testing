@@ -15,6 +15,7 @@ import groovy.mock.interceptor.*
 import net.luisalbertogh.jenkins.unit.PipelineTest
 import net.luisalbertogh.jenkins.unit.domain.File
 
+
 /**
  * @author loga
  *
