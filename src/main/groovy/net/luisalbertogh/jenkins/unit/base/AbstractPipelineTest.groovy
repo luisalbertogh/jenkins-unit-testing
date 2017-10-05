@@ -87,7 +87,7 @@ abstract class AbstractPipelineTest extends BaseRegressionTest {
         helper.registerAllowedMethod('waitUntil', [Closure.class], null)
         helper.registerAllowedMethod('writeFile', [Map.class], null)
         helper.registerAllowedMethod('build', [Map.class], null)
-        helper.registerAllowedMethod('tool', [Map.class], null)
+        helper.registerAllowedMethod('tool', [Map.class], { Map m -> return m.get("name") })
         helper.registerAllowedMethod('tool', [String.class], { t -> "${t}_HOME" })
         helper.registerAllowedMethod('withCredentials', [Map.class, Closure.class], null)
         helper.registerAllowedMethod('withCredentials', [List.class, Closure.class], null)
@@ -112,6 +112,8 @@ abstract class AbstractPipelineTest extends BaseRegressionTest {
 			return utils.readPomFile(pomfile.get('file'))
 		})
 		helper.registerAllowedMethod('withSonarQubeEnv', [Closure.class], null)
+		helper.registerAllowedMethod('node', [String.class, Closure.class], null)
+		helper.registerAllowedMethod('isUnix', [], {return false})
     }
 
     /**
