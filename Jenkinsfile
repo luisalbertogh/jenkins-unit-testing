@@ -1,3 +1,3 @@
 /* Launch p4pipeline on given node */
-@Library(['sabadell-pipeline-lib@develop']) _
+@Library(['sabadell-pipeline-lib@feature-do-stages']) _
 p4pipeline('master')
