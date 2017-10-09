@@ -36,7 +36,7 @@ class SharedLibsTest extends PipelineTest {
     /**
      * Test execution.
      */
-    @Test
+    //@Test
     public void testExecution() {
         /* Run the script */
         runScript('sh-libraries.pipeline')

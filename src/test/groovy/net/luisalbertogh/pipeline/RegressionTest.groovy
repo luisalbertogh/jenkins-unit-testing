@@ -39,7 +39,7 @@ class RegressionTest extends PipelineTest {
      * Test regression.
      * @throws Exception
      */
-    @Test
+    //@Test
     public void testRegression() throws Exception {
         /* Run the script */
         runScript('sh-libraries.pipeline')
