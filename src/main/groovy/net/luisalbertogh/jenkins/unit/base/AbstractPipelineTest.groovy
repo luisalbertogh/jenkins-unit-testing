@@ -149,7 +149,14 @@ abstract class AbstractPipelineTest extends BaseRegressionTest {
      */
     protected void registerLoadLibraries() {
         for(lib in libs) {
-            utils.loadGitLib(lib)
+			/* Load Git library */
+			if(lib.getGitUrl()){
+				utils.loadGitLib(lib)
+			}
+			/* Load local library */
+			else if(lib.getLocalUrl()){
+				utils.loadLocalLib(lib)
+			}
         }
     }
 

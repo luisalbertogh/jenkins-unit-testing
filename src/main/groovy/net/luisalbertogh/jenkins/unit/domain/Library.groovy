@@ -9,6 +9,7 @@ package net.luisalbertogh.jenkins.unit.domain
  */
 class Library {
     String gitUrl
+	String localUrl
     String libName
     String destination
     String branch

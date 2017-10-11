@@ -7,6 +7,7 @@ import com.lesfurets.jenkins.unit.MethodCall
 import com.lesfurets.jenkins.unit.MethodSignature
 import com.lesfurets.jenkins.unit.PipelineTestHelper
 import com.lesfurets.jenkins.unit.global.lib.GitSource
+import com.lesfurets.jenkins.unit.global.lib.LocalSource
 import com.lesfurets.jenkins.unit.global.lib.LibraryConfiguration
 import groovy.util.slurpersupport.GPathResult
 import net.luisalbertogh.jenkins.unit.domain.Library
@@ -37,6 +38,16 @@ class Utils {
         helper.registerSharedLibrary(lib)
     }
 
+	/**
+	 * Load library from local source
+	 * @param libArg - The library to register
+	 */
+	public void loadLocalLib(Library libArg) {
+		def localSource = MyLocalSource.localSource(libArg.getLocalUrl())
+		def lib = LibraryConfiguration.library(libArg.getLibName()).retriever(localSource).targetPath(libArg.getDestination()).defaultVersion(libArg.getBranch()).allowOverride(true).implicit(false).build()
+		helper.registerSharedLibrary(lib)
+	}
+	
     /**
      * Register readProperties method. The method reads the properties file and return a map.
      * @param filepath - The file path
