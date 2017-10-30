@@ -1,3 +1,3 @@
-/* Launch p4pipeline on given node */
+/* Launch p4pipeline on given node 
 @Library(['sabadell-pipeline-lib@develop']) _
-p4pipeline('master')
+p4pipeline('master') */
