@@ -1,7 +1,9 @@
 /**
- * Test pipeline with shared libraries in Groovy.
+ * Test pipeline in Groovy.
+ * 
+ * Use -Dpipeline.stack.write=true to update the the previous callstack trace.
  */
-package net.luisalbertogh.pipeline
+package com.bancsabadell.pipeline
 
 import static org.hamcrest.CoreMatchers.*
 import static org.junit.Assert.*
@@ -9,17 +11,16 @@ import static org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 
+import com.bancsabadell.jenkins.unit.PipelineTest
+import com.bancsabadell.jenkins.unit.domain.Library
 import com.lesfurets.jenkins.unit.*
 import com.lesfurets.jenkins.unit.global.lib.*
-
-import net.luisalbertogh.jenkins.unit.PipelineTest
-import net.luisalbertogh.jenkins.unit.domain.Library
 
 /**
  * @author loga
  *
  */
-class SharedLibsTest extends PipelineTest {
+class RegressionTest extends PipelineTest {
     /**
      * Set up test.
      */
@@ -34,10 +35,11 @@ class SharedLibsTest extends PipelineTest {
     }
 
     /**
-     * Test execution.
+     * Test regression.
+     * @throws Exception
      */
     //@Test
-    public void testExecution() {
+    public void testRegression() throws Exception {
         /* Run the script */
         runScript('sh-libraries.pipeline')
 
@@ -46,6 +48,9 @@ class SharedLibsTest extends PipelineTest {
 
         /* Assert step */
         assertTrue(helper.callStack.findAll({call -> call.methodName == "echo"}).any({call -> MethodCall.callArgsToString(call).contains("Hello Luis from simple lib")}))
+
+        /* Test regression */
+        super.testNonRegression('prev-output')
 
         /* Assert job status */
         assertJobStatusSuccess()

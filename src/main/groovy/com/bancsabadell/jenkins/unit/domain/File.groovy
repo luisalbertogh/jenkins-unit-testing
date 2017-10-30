@@ -1,7 +1,7 @@
 /**
  * File details.
  */
-package net.luisalbertogh.jenkins.unit.domain
+package com.bancsabadell.jenkins.unit.domain
 
 /**
  * @author loga

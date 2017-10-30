@@ -1,14 +1,14 @@
 /**
  * Abstract base pipeline test with regression test features. Extend this class to implement your own base pipeline test class.
  */
-package net.luisalbertogh.jenkins.unit.base
+package com.bancsabadell.jenkins.unit.base
 
+import com.bancsabadell.jenkins.unit.domain.File
+import com.bancsabadell.jenkins.unit.domain.Library
 import com.lesfurets.jenkins.unit.BaseRegressionTest
 import com.lesfurets.jenkins.unit.MethodSignature
 
 import groovy.lang.Binding
-import net.luisalbertogh.jenkins.unit.domain.File
-import net.luisalbertogh.jenkins.unit.domain.Library
 
 import java.time.*
 

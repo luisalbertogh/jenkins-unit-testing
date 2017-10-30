@@ -1,7 +1,7 @@
 /**
  * My own local source for local libs.
  */
-package net.luisalbertogh.jenkins.unit.base
+package com.bancsabadell.jenkins.unit.base
 
 import com.lesfurets.jenkins.unit.global.lib.SourceRetriever
 import groovy.transform.CompileStatic
@@ -12,7 +12,7 @@ import groovy.transform.Immutable
  *
  */
 
-@Immutable
+@Immutable 
 @CompileStatic
 class MyLocalSource implements SourceRetriever {
 
