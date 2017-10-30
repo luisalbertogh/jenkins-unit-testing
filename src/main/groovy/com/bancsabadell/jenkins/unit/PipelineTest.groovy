@@ -1,9 +1,9 @@
+package com.bancsabadell.jenkins.unit;
 /**
  * Pipeline test base class. Use it to configure all your test common features.
  */
-package net.luisalbertogh.jenkins.unit
 
-import net.luisalbertogh.jenkins.unit.base.AbstractPipelineTest
+import com.bancsabadell.jenkins.unit.base.AbstractPipelineTest
 
 /**
  * @author loga

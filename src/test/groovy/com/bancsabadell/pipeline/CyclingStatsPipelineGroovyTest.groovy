@@ -1,7 +1,7 @@
 /**
  * Test simple pipeline in Groovy.
  */
-package net.luisalbertogh.pipeline
+package com.bancsabadell.pipeline
 
 import static org.hamcrest.CoreMatchers.*
 import static org.junit.Assert.*
@@ -9,10 +9,9 @@ import static org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 
+import com.bancsabadell.jenkins.unit.PipelineTest
+import com.bancsabadell.jenkins.unit.domain.File
 import com.lesfurets.jenkins.unit.*
-
-import net.luisalbertogh.jenkins.unit.PipelineTest
-import net.luisalbertogh.jenkins.unit.domain.File
 
 /**
  * @author loga

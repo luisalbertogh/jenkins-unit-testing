@@ -1,8 +1,9 @@
 /**
  * Utilities and functions for pipeline tests.
  */
-package net.luisalbertogh.jenkins.unit.base
+package com.bancsabadell.jenkins.unit.base
 
+import com.bancsabadell.jenkins.unit.domain.Library
 import com.lesfurets.jenkins.unit.MethodCall
 import com.lesfurets.jenkins.unit.MethodSignature
 import com.lesfurets.jenkins.unit.PipelineTestHelper
@@ -10,14 +11,13 @@ import com.lesfurets.jenkins.unit.global.lib.GitSource
 import com.lesfurets.jenkins.unit.global.lib.LocalSource
 import com.lesfurets.jenkins.unit.global.lib.LibraryConfiguration
 import groovy.util.slurpersupport.GPathResult
-import net.luisalbertogh.jenkins.unit.domain.Library
 
 /**
  * @author loga
  *
  */
 class Utils {
-    /** Pipeline helper */
+	/** Helper */
     private PipelineTestHelper helper
 
     /**

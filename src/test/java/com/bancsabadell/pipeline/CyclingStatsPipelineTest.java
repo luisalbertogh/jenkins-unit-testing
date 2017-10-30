@@ -1,9 +1,9 @@
-package net.luisalbertogh.pipeline;
+package com.bancsabadell.pipeline;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import net.luisalbertogh.jenkins.unit.PipelineTest;
+import com.bancsabadell.jenkins.unit.PipelineTest;
 
 /**
  * cycling-stats.pipeline test suite.
