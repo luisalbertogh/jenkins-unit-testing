@@ -5,6 +5,7 @@ package com.bancsabadell.jenkins.unit.base
 
 import com.bancsabadell.jenkins.unit.domain.File
 import com.bancsabadell.jenkins.unit.domain.Library
+import com.bancsabadell.pipeline.*
 import com.lesfurets.jenkins.unit.BaseRegressionTest
 import com.lesfurets.jenkins.unit.MethodSignature
 
@@ -115,6 +116,9 @@ abstract class AbstractPipelineTest extends BaseRegressionTest {
 		helper.registerAllowedMethod('withSonarQubeEnv', [Closure.class], null)
 		helper.registerAllowedMethod('node', [String.class, Closure.class], null)
 		helper.registerAllowedMethod('isUnix', [], {return false})
+		helper.registerAllowedMethod('libraryResource', [String.class], {String filename -> 
+			return new java.io.File(binding.getVariable('confDir') + filename).getText('UTF-8')
+		})
     }
 
     /**
