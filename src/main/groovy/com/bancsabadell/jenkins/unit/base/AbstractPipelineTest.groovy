@@ -3,6 +3,7 @@
  */
 package com.bancsabadell.jenkins.unit.base
 
+import com.bancsabadell.jenkins.unit.domain.Env
 import com.bancsabadell.jenkins.unit.domain.File
 import com.bancsabadell.jenkins.unit.domain.Library
 import com.bancsabadell.pipeline.*
@@ -182,9 +183,9 @@ abstract class AbstractPipelineTest extends BaseRegressionTest {
      */
     protected void addEnvVar(String name, String val) {
         if (!binding.hasVariable('env')) {
-            binding.setVariable('env', new Expando(getProperty: { p -> this[p] }, setProperty: { p, v -> this[p] = v }))
+            binding.setVariable('env', new Env())
         }
-        def env = binding.getVariable('env') as Expando
+        Env env = binding.getVariable('env')
         env[name] = val
     }
 }
