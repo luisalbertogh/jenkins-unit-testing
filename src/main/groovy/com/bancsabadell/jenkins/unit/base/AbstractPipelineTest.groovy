@@ -115,6 +115,7 @@ abstract class AbstractPipelineTest extends BaseRegressionTest {
 			return utils.readPomFile(pomfile.get('file'))
 		})
 		helper.registerAllowedMethod('withSonarQubeEnv', [Closure.class], null)
+        helper.registerAllowedMethod('withSonarQubeEnv', [String.class, Closure.class], null)
 		helper.registerAllowedMethod('node', [String.class, Closure.class], null)
 		helper.registerAllowedMethod('isUnix', [], {return false})
 		helper.registerAllowedMethod('libraryResource', [String.class], {String filename -> 
