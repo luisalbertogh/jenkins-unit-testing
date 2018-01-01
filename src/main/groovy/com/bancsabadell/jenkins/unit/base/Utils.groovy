@@ -10,6 +10,7 @@ import com.lesfurets.jenkins.unit.PipelineTestHelper
 import com.lesfurets.jenkins.unit.global.lib.GitSource
 import com.lesfurets.jenkins.unit.global.lib.LocalSource
 import com.lesfurets.jenkins.unit.global.lib.LibraryConfiguration
+import groovy.json.JsonSlurper
 import groovy.util.slurpersupport.GPathResult
 
 /**
@@ -109,6 +110,14 @@ class Utils {
         helper.registerAllowedMethod(MethodSignature.method('readFile', String.class), {file -> return new File(filepath).getText(enc)})
     }
 
+    /**
+     * Register readJSON method to read a JSON filepath and return the file content.
+     * @param filepath - The file path
+     */
+    public def readJSON(String filepath) {
+        return new JsonSlurper().parse(new File(filepath))
+    }
+    
     /**
      * Register load method. This is intended for methods that load a groovy file where a class is defined. Then it returns the class.
      * @param script - The script path
