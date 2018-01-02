@@ -17,7 +17,7 @@ node('master') {
             // echo "${envs.repository_template_url_protocol}"
             gitURL = "${envs.repository_template_url_protocol}${user}:${cred}@${envs.repository_template_url_name}/${projectName}/${repoName}.git"
             sh "git ls-remote ${gitURL} > output.txt"
-            output = readFile("output.txt")
+            output = readFile file: "output.txt"
             if(output.size() == 0){
                 error "GIT REPOSITORY ${gitURL} DOES NOT EXIST"
             }else{
@@ -38,7 +38,7 @@ node('master') {
 }
 
 def UpdateBitbucketHookConf(envs){
-    def data = readFile("tempProperties.properties")
+    def data = readFile file: "tempProperties.properties"
     data = data.split("\n")
 
     def jobName = data[0]

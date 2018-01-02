@@ -26,7 +26,7 @@ abstract class AbstractPipelineTest extends BaseRegressionTest {
 	protected List<File> bindfiles = []
 	
     /** Files to read */
-    protected List<File> files = []
+    protected Map<String, String> files = [:]
 
     /** JSONs to read */
     protected Map<String, String> jsons = [:]
@@ -66,9 +66,6 @@ abstract class AbstractPipelineTest extends BaseRegressionTest {
 		
 		/* Bind properties files */
 		bindProperties()
-        
-		/* Register read files actions */
-		registerReadFiles()
         
 		/* Load libraries and scripts */
 		registerLoadLibraries()
@@ -120,6 +117,12 @@ abstract class AbstractPipelineTest extends BaseRegressionTest {
         helper.registerAllowedMethod('readJSON', [Map.class], { Map jsonfile ->
             return utils.readJSON(jsons.get(jsonfile.get('file')))
         })
+        helper.registerAllowedMethod('readFile', [Map.class], { Map file ->
+            return utils.readFile(files.get(file.get('file')))
+        })
+        helper.registerAllowedMethod('readFile', [String.class], { String file ->
+            return utils.readFile(file)
+        })
 		helper.registerAllowedMethod('withSonarQubeEnv', [Closure.class], null)
         helper.registerAllowedMethod('withSonarQubeEnv', [String.class, Closure.class], null)
 		helper.registerAllowedMethod('node', [String.class, Closure.class], null)
@@ -146,15 +149,6 @@ abstract class AbstractPipelineTest extends BaseRegressionTest {
 			utils.bindPropertiesFromFile(binding, props.filepath, props.encoding)
 		}
 	}
-	
-    /**
-     * Register read file methods.
-     */
-    protected void registerReadFiles() {
-        for(f in files) {
-            utils.readFile(f.filepath, f.encoding)
-        }
-    }
 
     /**
      * Register load library methods.

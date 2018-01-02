@@ -31,8 +31,9 @@ class PipelineGeneratorTest extends PipelineTest {
         propfiles.add(new File(filepath:'src/test/resources/properties/generator.properties', encoding:'UTF-8'))
 
         /* Read file (jenkins method) - output = readFile("output.txt") */
-        files.add(new File(filepath:'src/test/resources/properties/tempProperties.properties', encoding:'UTF-8'))
-
+        files.put('tempProperties.properties','src/test/resources/properties/tempProperties.properties')
+        files.put('output.txt', 'src/test/resources/properties/tempProperties.properties')
+        
         /* Load groovy script */
         scripts.add('script/Utils/BitbucketScript.groovy')
 

@@ -106,8 +106,8 @@ class Utils {
      * @param filepath - The file path
      * @param enc - The encoding
      */
-    public void readFile(String filepath, String enc) {
-        helper.registerAllowedMethod(MethodSignature.method('readFile', String.class), {file -> return new File(filepath).getText(enc)})
+    public String readFile(String filepath) {
+        return new File(filepath).getText('UTF-8')
     }
 
     /**
