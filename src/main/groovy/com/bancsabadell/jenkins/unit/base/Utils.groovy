@@ -119,6 +119,14 @@ class Utils {
     }
     
     /**
+     * Register readJSON method to read a JSON filepath and return the file content.
+     * @param filepath - The file path
+     */
+    public def readJSONFromText(String text) {
+        return new JsonSlurper().parseText(text)
+    }
+    
+    /**
      * Register load method. This is intended for methods that load a groovy file where a class is defined. Then it returns the class.
      * @param script - The script path
      */

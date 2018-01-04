@@ -115,7 +115,10 @@ abstract class AbstractPipelineTest extends BaseRegressionTest {
 			return utils.readPomFile(pomfile.get('file'))
 		})
         helper.registerAllowedMethod('readJSON', [Map.class], { Map jsonfile ->
-            return utils.readJSON(jsons.get(jsonfile.get('file')))
+            if(jsonfile.get('file') != null) {
+                return utils.readJSON(jsons.get(jsonfile.get('file')))
+            }
+            return utils.readJSONFromText(jsonfile.get('text'))
         })
         helper.registerAllowedMethod('readFile', [Map.class], { Map file ->
             return utils.readFile(files.get(file.get('file')))
