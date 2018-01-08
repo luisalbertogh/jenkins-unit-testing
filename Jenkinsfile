@@ -27,7 +27,7 @@ pipeline {
         /* Publish library */
         stage('Publish'){
             steps {
-                sh "${params.MVN install"
+                sh "${params.MVN} install"
             }
         }
     }
