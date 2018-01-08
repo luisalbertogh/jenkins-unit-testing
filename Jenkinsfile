@@ -3,29 +3,31 @@ pipeline {
     /* Selected agent */
     agent { label 'p4es-maven-slave' }
 
-    /* Maven command */
-    def mvncmd = 'mvn33'
+    /* Params */
+    parameters {
+        string(name: 'MVN', defaultValue: 'mvn33', description: 'Maven executable')
+    }
 
     /* Pipeline stages */
     stages {
         /* Compile */
         stage('Compile'){
             steps {
-                sh "${mvncmd} clean compile"
+                sh "${params.MVN} clean compile"
             }
         }
 
         /* Test library */
         stage('Test') {
             steps {
-                sh "${mvncmd} test"
+                sh "${params.MVN} test"
             }
         }
 
         /* Publish library */
         stage('Publish'){
             steps {
-                sh "${mvncmd} install"
+                sh "${params.MVN install"
             }
         }
     }
