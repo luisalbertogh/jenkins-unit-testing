@@ -11,5 +11,19 @@ pipeline {
                 sh 'mvn33 clean compile'
             }
         }
+
+        /* Test library */
+        stage('Test') {
+            steps {
+                sh 'mvn33 test'
+            }
+        }
+
+        /* Publish library */
+        stage('Publish'){
+            steps {
+                sh 'mvn33 install'
+            }
+        }
     }
 }
