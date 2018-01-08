@@ -1,11 +1,12 @@
 /* Build jenkins-unit-testing */
 pipeline {
     /* Selected agent */
-    agent { label 'p4es-maven-slave' }
+    //agent { label 'p4es-maven-slave' }
+    agent { label 'docker-slaves' }
 
     /* Params */
     parameters {
-        string(name: 'MVN', defaultValue: 'mvn33', description: 'Maven executable')
+        string(name: 'MVN', defaultValue: 'mvn', description: 'Maven executable')
     }
 
     /* Pipeline stages */
