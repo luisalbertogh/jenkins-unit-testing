@@ -12,23 +12,23 @@ pipeline {
     /* Pipeline stages */
     stages {
         /* Compile */
-        stage('Compile'){
+        stage('Build'){
             steps {
                 sh "${params.MVN} clean compile"
             }
         }
 
-        /* Test library */
+        /* Test */
         stage('Test') {
             steps {
                 sh "${params.MVN} test"
             }
         }
 
-        /* Publish library */
-        stage('Publish'){
+        /* Package and upload to binary repo */
+        stage('Store'){
             steps {
-                sh "${params.MVN} install"
+                sh "${params.MVN} package"
             }
         }
     }
