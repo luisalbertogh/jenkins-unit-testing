@@ -31,6 +31,9 @@ abstract class AbstractPipelineTest extends BaseRegressionTest {
     /** JSONs to read */
     protected Map<String, String> jsons = [:]
     
+    /** POMs to read */
+    protected Map<String, String> poms = [:]
+    
     /** Libraries to load */
     protected List<Library> libs = []
 
@@ -112,7 +115,7 @@ abstract class AbstractPipelineTest extends BaseRegressionTest {
         })
 		helper.registerAllowedMethod('timestamps', [Closure.class], null)
 		helper.registerAllowedMethod('readMavenPom', [Map.class], { Map pomfile ->
-			return utils.readPomFile(pomfile.get('file'))
+			return utils.readPomFile(poms[pomfile.get('file')])
 		})
         helper.registerAllowedMethod('readJSON', [Map.class], { Map jsonfile ->
             if(jsonfile.get('file') != null) {

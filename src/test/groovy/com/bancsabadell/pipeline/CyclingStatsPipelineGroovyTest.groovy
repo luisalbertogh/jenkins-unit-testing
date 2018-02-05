@@ -27,6 +27,9 @@ class CyclingStatsPipelineGroovyTest extends PipelineTest {
 		/* Bind properties from file */
 		bindfiles.add(new File(filepath:'src/test/resources/properties/generator.properties', encoding:'UTF-8'))
 		
+        /* Set default pom */
+        poms.put('pom.xml','pom.xml')
+        
 		/* Set up */
         super.setUp()
 				

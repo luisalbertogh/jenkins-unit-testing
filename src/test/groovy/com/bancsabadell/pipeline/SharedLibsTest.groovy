@@ -28,6 +28,9 @@ class SharedLibsTest extends PipelineTest {
         /* Register library */
         libs.add(new Library(gitUrl:'https://github.com/luisalbertogh/my-jenkins-lib', libName:'simple-lib', destination:'my-jenkins-lib', branch:'master'))
 
+        /* Set default pom */
+        poms.put('pom.xml','pom.xml')
+        
         /* Set up test */
         super.setUp()
     }

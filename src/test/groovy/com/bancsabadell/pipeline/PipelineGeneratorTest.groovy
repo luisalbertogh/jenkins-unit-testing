@@ -30,6 +30,9 @@ class PipelineGeneratorTest extends PipelineTest {
         /* Read properties files to a map - envs = readProperties  file: "properties/generator.properties" */
         propfiles.add(new File(filepath:'src/test/resources/properties/generator.properties', encoding:'UTF-8'))
 
+        /* Set default pom */
+        poms.put('pom.xml','pom.xml')
+        
         /* Read file (jenkins method) - output = readFile("output.txt") */
         files.put('tempProperties.properties','src/test/resources/properties/tempProperties.properties')
         files.put('output.txt', 'src/test/resources/properties/tempProperties.properties')

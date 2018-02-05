@@ -24,6 +24,9 @@ public class CyclingStatsPipelineTest extends PipelineTest {
         /* Set up test */
         super.setUp();
 
+        /* Set default pom */
+        poms.put("pom.xml","pom.xml");
+        
         /* Define variables */
         getBinding().setVariable("scm", "scm");
     }
