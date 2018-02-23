@@ -136,6 +136,7 @@ abstract class AbstractPipelineTest extends BaseRegressionTest {
 		helper.registerAllowedMethod('libraryResource', [String.class], {String filename -> 
 			return new java.io.File(binding.getVariable('confDir') + filename).getText('UTF-8')
 		})
+        helper.registerAllowedMethod('fileExists', [Map.class], {return true})
     }
 
     /**
