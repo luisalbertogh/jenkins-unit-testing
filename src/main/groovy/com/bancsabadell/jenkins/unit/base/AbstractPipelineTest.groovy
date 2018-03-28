@@ -90,6 +90,7 @@ abstract class AbstractPipelineTest extends BaseRegressionTest {
         helper.registerAllowedMethod('jobDsl', [Map.class], null)
         helper.registerAllowedMethod('bat', [String.class], null)
         helper.registerAllowedMethod('bat', [Map.class], null)
+        helper.registerAllowedMethod('sh', [Map.class], {return 0})
         helper.registerAllowedMethod('timeout', [Integer.class, Closure.class], null)
         helper.registerAllowedMethod('waitUntil', [Closure.class], null)
         helper.registerAllowedMethod('writeFile', [Map.class], null)
@@ -133,7 +134,7 @@ abstract class AbstractPipelineTest extends BaseRegressionTest {
 		helper.registerAllowedMethod('withSonarQubeEnv', [Closure.class], null)
         helper.registerAllowedMethod('withSonarQubeEnv', [String.class, Closure.class], null)
 		helper.registerAllowedMethod('node', [String.class, Closure.class], null)
-		helper.registerAllowedMethod('isUnix', [], {return false})
+		helper.registerAllowedMethod('isUnix', [], {return true})
 		helper.registerAllowedMethod('libraryResource', [String.class], {String filename -> 
 			return new java.io.File(binding.getVariable('confDir') + filename).getText('UTF-8')
 		})
