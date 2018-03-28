@@ -89,6 +89,7 @@ abstract class AbstractPipelineTest extends BaseRegressionTest {
 		helper.registerAllowedMethod('findFiles', [LinkedHashMap.class], {return [new java.io.File('mockFile-1.0.1')]})
         helper.registerAllowedMethod('jobDsl', [Map.class], null)
         helper.registerAllowedMethod('bat', [String.class], null)
+        helper.registerAllowedMethod('bat', [Map.class], null)
         helper.registerAllowedMethod('timeout', [Integer.class, Closure.class], null)
         helper.registerAllowedMethod('waitUntil', [Closure.class], null)
         helper.registerAllowedMethod('writeFile', [Map.class], null)
