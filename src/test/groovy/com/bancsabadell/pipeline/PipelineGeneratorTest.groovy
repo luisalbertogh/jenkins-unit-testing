@@ -28,8 +28,8 @@ class PipelineGeneratorTest extends PipelineTest {
     @Before
     public void setUp() {
         /* Read properties files to a map - envs = readProperties  file: "properties/generator.properties" */
-        propfiles.add(new File(filepath:'src/test/resources/properties/generator.properties', encoding:'UTF-8'))
-
+        propfilesMap.put('generator.properties', 'src/test/resources/properties/generator.properties')
+        
         /* Set default pom */
         poms.put('pom.xml','pom.xml')
         

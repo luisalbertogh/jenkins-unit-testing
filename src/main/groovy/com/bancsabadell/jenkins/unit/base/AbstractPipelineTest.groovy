@@ -68,7 +68,7 @@ abstract class AbstractPipelineTest extends BaseRegressionTest {
 		registerMyMethods()
 		
 		/* Register read properties actions */
-		registerReadProperties()
+		//registerReadProperties()
 		
 		/* Bind properties files */
 		bindProperties()
@@ -143,11 +143,18 @@ abstract class AbstractPipelineTest extends BaseRegressionTest {
 		})
         helper.registerAllowedMethod('fileExists', [Map.class], {return true})
         
-//        helper.registerAllowedMethod('readProperties', [Map.class], { file -> 
-//            if(propfilesMap.get(file.file) != null) {
-//                return utils.returnReadPropertiesRetMap(propfilesMap.get(file.file), 'UTF-8')
-//            }
-//        })
+        /* Read mocke properties files  */
+        helper.registerAllowedMethod('readProperties', [Map.class], { Map file -> 
+            String filepath = file.get('file') 
+            if(filepath != null) {
+                Set keys = propfilesMap.keySet()
+                for(String key:keys) {
+                    if(filepath.contains(key)) {
+                        return utils.returnReadPropertiesRetMap(propfilesMap.get(key), 'UTF-8')
+                    }
+                }
+            }
+        })
     }
 
     /**
