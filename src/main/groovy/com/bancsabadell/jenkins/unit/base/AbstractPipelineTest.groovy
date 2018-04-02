@@ -22,6 +22,9 @@ abstract class AbstractPipelineTest extends BaseRegressionTest {
     /** Properties files to load as maps */
     protected List<File> propfiles = []
 
+    /** Properties files to load as maps */
+    protected Map<String,File> propfilesMap = [:]
+    
 	/** Properties files to bind */
 	protected List<File> bindfiles = []
 	
@@ -139,6 +142,12 @@ abstract class AbstractPipelineTest extends BaseRegressionTest {
 			return new java.io.File(binding.getVariable('confDir') + filename).getText('UTF-8')
 		})
         helper.registerAllowedMethod('fileExists', [Map.class], {return true})
+        
+//        helper.registerAllowedMethod('readProperties', [Map.class], { file -> 
+//            if(propfilesMap.get(file.file) != null) {
+//                return utils.returnReadPropertiesRetMap(propfilesMap.get(file.file), 'UTF-8')
+//            }
+//        })
     }
 
     /**

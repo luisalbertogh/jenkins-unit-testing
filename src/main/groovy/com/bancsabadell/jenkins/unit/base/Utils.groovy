@@ -65,6 +65,21 @@ class Utils {
             }
         })		
     }
+    
+    /**
+     * Register readProperties method. The method reads the properties file and return a map.
+     * @param filepath - The file path
+     * @param enc - The encoding
+     */
+    public def returnReadPropertiesRetMap(String filepath, String enc) {
+        return new File(filepath).readLines(enc).inject([:]){ map, line ->
+            def entry = line.split("=")
+            if(!line.startsWith('#')){
+                map.putAt(entry[0].trim(), entry[1].trim())
+            }
+            return map
+        }
+    }
 	
 	/**
 	 * Read properties from file and bind them.
