@@ -89,7 +89,13 @@ abstract class AbstractPipelineTest extends BaseRegressionTest {
      * Register jenkins scripted pipeline methods.
      */
     protected void registerJenkinsMethods() {
-		helper.registerAllowedMethod('findFiles', [LinkedHashMap.class], {return [new java.io.File('mockFile-1.0.1')]})
+		helper.registerAllowedMethod('findFiles', [LinkedHashMap.class], { map ->
+            String glob = map.glob
+            if(glob != null && glob.contains('saf')) {
+                return [new java.io.File(files['saf'])]
+            }
+            return [new java.io.File('mockFile-1.0.1')]
+        })
         helper.registerAllowedMethod('jobDsl', [Map.class], null)
         helper.registerAllowedMethod('sshPublisher', [Map.class], { map -> return 'sshPublisher('+map.toMapString()+')' })
 		helper.registerAllowedMethod('sshPublisherDesc', [Map.class],  { map -> return 'sshPublisherDesc('+map.toMapString()+')' })
