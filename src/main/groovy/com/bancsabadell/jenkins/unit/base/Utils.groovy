@@ -126,6 +126,17 @@ class Utils {
     }
 
     /**
+     * Register writeFile method to write a file.
+     * @param filepath - The file path
+     * @param enc - The encoding
+     */
+    public void writeFile(String filepath, String content) {
+        Writer w = new FileWriter(new File(filepath))
+        w.write(content)
+        w.close()
+    }
+    
+    /**
      * Register readJSON method to read a JSON filepath and return the file content.
      * @param filepath - The file path
      */
