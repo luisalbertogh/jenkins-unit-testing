@@ -10,6 +10,8 @@ import com.lesfurets.jenkins.unit.PipelineTestHelper
 import com.lesfurets.jenkins.unit.global.lib.GitSource
 import com.lesfurets.jenkins.unit.global.lib.LocalSource
 import com.lesfurets.jenkins.unit.global.lib.LibraryConfiguration
+import groovy.json.JsonBuilder
+import groovy.json.JsonOutput
 import groovy.json.JsonSlurper
 import groovy.util.slurpersupport.GPathResult
 
@@ -142,6 +144,14 @@ class Utils {
      */
     public def readJSON(String filepath) {
         return new JsonSlurper().parse(new File(filepath))
+    }
+    
+    /**
+     * Register writeJSON method to write to a JSON filepath.
+     * @param filepath - The file path
+     */
+    public def writeJSON(def jsonArg, String filepath) {
+        new File(filepath).write(new JsonBuilder(jsonArg).toPrettyString())
     }
     
     /**

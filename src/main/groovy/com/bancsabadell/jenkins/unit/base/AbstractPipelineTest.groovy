@@ -145,6 +145,11 @@ abstract class AbstractPipelineTest extends BaseRegressionTest {
             }
             return utils.readJSONFromText(jsonfile.get('text'))
         })
+        helper.registerAllowedMethod('writeJSON', [Map.class], { Map jsonfile ->
+            if(jsonfile.get('file') != null) {
+                return utils.writeJSON(jsonfile.get('json'), jsons.get(jsonfile.get('file')))
+            }
+        })
         helper.registerAllowedMethod('readFile', [Map.class], { Map file ->
             return utils.readFile(files.get(file.get('file')))
         })
