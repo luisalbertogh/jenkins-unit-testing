@@ -14,6 +14,7 @@ import groovy.json.JsonBuilder
 import groovy.json.JsonOutput
 import groovy.json.JsonSlurper
 import groovy.util.slurpersupport.GPathResult
+import org.yaml.snakeyaml.Yaml
 
 /**
  * @author loga
@@ -125,6 +126,15 @@ class Utils {
      */
     public String readFile(String filepath) {
         return new File(filepath).getText('UTF-8')
+    }
+    
+    /**
+     * Register readFile method to read a filepath and return the file content.
+     * @param filepath - The file path
+     * @param enc - The encoding
+     */
+    public Map readYaml(String filepath) {
+        return new Yaml().load(filepath)
     }
 
     /**
