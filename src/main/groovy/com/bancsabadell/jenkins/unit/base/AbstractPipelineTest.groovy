@@ -153,11 +153,14 @@ abstract class AbstractPipelineTest extends BaseRegressionTest {
         helper.registerAllowedMethod('readFile', [Map.class], { Map file ->
             return utils.readFile(files.get(file.get('file')))
         })
+        helper.registerAllowedMethod('readFile', [String.class], { String file ->
+            return utils.readFile(file)
+        })
         helper.registerAllowedMethod('readYaml', [Map.class], { Map file ->
             return utils.readYaml(files.get(file.get('file')))
         })
-        helper.registerAllowedMethod('readFile', [String.class], { String file ->
-            return utils.readFile(file)
+        helper.registerAllowedMethod('readYaml', [String.class], { String file ->
+            return utils.readYaml(file)
         })
 		helper.registerAllowedMethod('withSonarQubeEnv', [Closure.class], null)
         helper.registerAllowedMethod('withSonarQubeEnv', [String.class, Closure.class], null)

@@ -134,7 +134,7 @@ class Utils {
      * @param enc - The encoding
      */
     public Map readYaml(String filepath) {
-        return new Yaml().load(filepath)
+        return new Yaml().load(new File(filepath).getText('UTF-8'))
     }
 
     /**
