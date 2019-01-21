@@ -102,6 +102,7 @@ abstract class AbstractPipelineTest extends BaseRegressionTest {
             }
             return [new java.io.File('mockFile-1.0.1')]
         })
+        helper.registerAllowedMethod('writeMavenPom', [Map.class], null)
         helper.registerAllowedMethod('jobDsl', [Map.class], null)
         helper.registerAllowedMethod('sshPublisher', [Map.class], { map -> return 'sshPublisher('+map.toMapString()+')' })
 		helper.registerAllowedMethod('sshPublisherDesc', [Map.class],  { map -> return 'sshPublisherDesc('+map.toMapString()+')' })
