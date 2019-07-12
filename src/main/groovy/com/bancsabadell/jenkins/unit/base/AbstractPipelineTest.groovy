@@ -37,6 +37,9 @@ abstract class AbstractPipelineTest extends BaseRegressionTest {
     /** POMs to read */
     protected Map<String, String> poms = [:]
     
+    /** Input fields */
+    protected Map<String, String> inputs = [:]
+    
     /** Libraries to load */
     protected List<Library> libs = []
 
@@ -183,6 +186,14 @@ abstract class AbstractPipelineTest extends BaseRegressionTest {
                     }
                 }
             }
+        })
+        helper.registerAllowedMethod('input', [Map.class], { Map params ->
+            Map values = inputs[params.id]
+            if(values.size == 1) {
+                return values['input']
+            }
+            
+            return values
         })
     }
 
