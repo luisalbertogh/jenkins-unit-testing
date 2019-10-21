@@ -195,6 +195,8 @@ abstract class AbstractPipelineTest extends BaseRegressionTest {
             
             return values
         })
+        
+        helper.registerAllowedMethod('waitForQualityGate', [], {return [status:'OK']})
     }
 
     /**
